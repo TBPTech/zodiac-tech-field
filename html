@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Find Your Tech Field Based on Your Zodiac Sign</title>
+    <style>
+      body {
+        color: red;
+      }
+      h1 {
+        color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Enter Your Birthday</h1>
+    <form>
+      <label for="birthday">Birthday (dd/mm/yy):</label>
+      <input type="text" id="birthday" name="birthday" required>
+      <button type="submit">Find My Tech Field</button>
+    </form>
+    <div id="output"></div>
+    <script>
+      const output = document.getElementById("output");
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const birthday = form.birthday.value;
+        const [day, month, year] = birthday.split("/");
+        const date = new Date(year, month - 1, day);
+        const zodiacSign = getZodiacSign(date);
+        const techField = getTechField(zodiacSign);
+        output.innerHTML = `Your zodiac sign is ${zodiacSign} and your tech field is ${techField}.`;
+      });
+
+      function getZodiacSign(date) {
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        if ((month == 1 && day <= 20) || (month == 12 && day >= 22)) {
+          return "Capricorn";
+        } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
+          return "Aquarius";
+        } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+          return "Pisces";
+        } else if ((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
+          return "Aries";
+        } else if ((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
+          return "Taurus";
+        } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+          return "Gemini";
+        } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+          return "Cancer";
+        } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+          return "Leo";
+        } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+          return "Virgo";
+        } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+          return "Libra";
+        } else if ((month == 10 && day >= 23) || (month == 11 && day <= 22)) {
+          return "Scorpio";
+        } else if ((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
+          return "Sagittarius";
+        }
+      }
+
+      function getTechField(zodiacSign) {
+        switch (zodiacSign) {
+          case "Capricorn":
+            return "Software Development";
+         
